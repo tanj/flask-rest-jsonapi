@@ -4,7 +4,7 @@
 
 from flask import current_app
 from marshmallow import class_registry
-from marshmallow.base import SchemaABC
+from marshmallow.schema import Schema
 from sqlalchemy.inspection import inspect
 from sqlalchemy.orm import ColumnProperty, RelationshipProperty, joinedload
 from sqlalchemy.orm.attributes import QueryableAttribute
@@ -703,7 +703,7 @@ class SqlalchemyDataLayer(BaseDataLayer):
 
                     related_schema_cls = get_related_schema(current_schema, obj)
 
-                    if isinstance(related_schema_cls, SchemaABC):
+                    if isinstance(related_schema_cls, Schema):
                         related_schema_cls = related_schema_cls.__class__
                     else:
                         related_schema_cls = class_registry.get_class(
